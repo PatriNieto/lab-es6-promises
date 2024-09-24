@@ -54,10 +54,8 @@
               getInstruction("mashedPotatoes", 4, (step4) => {
                 document.querySelector("#mashedPotatoes").innerHTML += `<li>${step4}</li>`
                 document.querySelector("#mashedPotatoes").innerHTML += `<li>Mashed potatoes are ready!</li>`
-
-
-                
-
+                document.querySelector("#mashedPotatoesImg").removeAttribute("hidden")
+   
               }, (error)=> {
                     console.log(error)})
             }, (error)=> {
@@ -120,13 +118,66 @@ obtainInstruction('steak', 0)
   })
   .finally( (step8)=>{
     document.querySelector("#steak").innerHTML += `<li>Stake is ready!</li>`
+    document.querySelector("#steakImg").removeAttribute("hidden")
+
     
   })
 
   // ... Your code here
 
 // Iteration 3 using async/await
-// ...
+async function makeBroccoli() {
+  //try lo que el sistema tiene que hacer si no hay error
+  //catch lo que tiene que hacer si hay fallo
+  //no hay then
+  try {
 
+    //await -> espera que termine un paso antes de continuar
+    const response0 = await obtainInstruction('broccoli', 0)
+    document.querySelector("#broccoli").innerHTML += `<li>${response0}</li>` 
+    const response1 = await obtainInstruction('broccoli', 1)
+    document.querySelector("#broccoli").innerHTML += `<li>${response1}</li>` 
+    const response2 = await obtainInstruction('broccoli', 2)
+    document.querySelector("#broccoli").innerHTML += `<li>${response2}</li>` 
+    const response3 = await obtainInstruction('broccoli', 3)
+    document.querySelector("#broccoli").innerHTML += `<li>${response3}</li>` 
+    const response4 = await obtainInstruction('broccoli', 4)
+    document.querySelector("#broccoli").innerHTML += `<li>${response4}</li>` 
+    const response5 = await obtainInstruction('broccoli', 5)
+    document.querySelector("#broccoli").innerHTML += `<li>${response5}</li>` 
+    const response6 =  
+    document.querySelector("#broccoli").innerHTML += `<li>Broccoli is ready!</li>` 
+    document.querySelector("#broccoliImg").removeAttribute("hidden")
+    
+
+
+
+
+  } catch(error) {
+    console.log(error)
+  }
+}
+
+//   ---------------- INVOCAR LA FUNCION!!!!!!!!!!!!!!!! ------------
+makeBroccoli()
 // Bonus 2 - Promise all
-// ...
+Promise.all(
+[ obtainInstruction("brusselsSprouts", 0),
+  obtainInstruction("brusselsSprouts", 1),
+  obtainInstruction("brusselsSprouts", 2),
+  obtainInstruction("brusselsSprouts", 3),
+  obtainInstruction("brusselsSprouts", 4),
+  obtainInstruction("brusselsSprouts", 5),
+  obtainInstruction("brusselsSprouts", 6)
+]).then((response)=>{
+  //console.log(response)
+  response.forEach((element) => {
+    document.querySelector("#brusselsSprouts").innerHTML += `<li>${element}</li>` 
+  });
+ 
+}).catch(()=>{
+  console.log(error)
+}).finally(
+  document.querySelector("#brusselsSprouts").innerHTML += `<li>Brussels sprouts are ready!</li>` ,
+  document.querySelector("#brusselsSproutsImg").removeAttribute("hidden")
+)
